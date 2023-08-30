@@ -1,100 +1,16 @@
 "use strict";
 
-let title 
-let screens 
-let screenPrice 
-let adaptive 
-
-let rollback = 10;
-let fullPrice
-let allServicePrices
-let servicePercentPrice
-
-let service1 
-let service2 
-
-const isNumber = function(num) {
-    return !isNaN(parseFloat(num) && isFinite(num))
-}
-
-const asking = function() {
-    title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
-    screens = prompt('Какие типы экранов нужно разработать ?', 'Простые, Сложные, Интерактивные');
-    screenPrice = prompt('Сколько будет стоить данная работа?', 15000);
-    do {
-        screenPrice = prompt('Сколько будет стоить данная работа?', 15000);
-    } while(!isNumber(screenPrice));
-    adaptive = confirm('Нужен ли адаптив на сайте?');
-}
-asking();
-
-const getAllServicePrices = function () {
-    let sum = 0
-
-    for (let i = 0; i < 2; i++) {
-      if (i === 0) {
-        service1 = prompt('Какой дополнительный тип услуги нужен?')
-        
-      } else if (i === 1) {
-        service2 = prompt('Какой дополнительный тип услуги нужен?')
-      }
-      sum += +prompt('Сколько это будет стоить?')
-      do {
-        sum += +prompt('Сколько это будет стоить?')
-      } while(!isNumber(sum));
-    }
-    
-    return sum
-    // return servicePrice1 + servicePrice2
-};
-
-
-const showTypeOf = function (variable) {
-    console.log(variable, typeof variable);
-}
-function getFullPrice() {
-    return screenPrice + allServicePrices
-}
-
-
-
-const getTitle = function () {
-    return title.charAt(0).toUpperCase() + title.slice(1);
-}
-
-
-
-const getRollbackMessage = function (price) {
-    if (price >= 30000) {
-        return "Даем скидку в 10%";
-    } else if (price >= 15000 && price < 30000) {
-        return "Даем скидку в 5%";
-    } else if (price >= 0 && price < 1500) {
-        return "Скидка не предусмотрена";
-    } else {
-        return "Что то пошло не так";
+let input, random = Math.floor(Math.random() * 100);
+ 
+while (input = prompt("Введите число от 0 до 100:")) {
+    if (isNaN(input))
+        alert("Введите число!");
+    else if (input > random)
+        alert("Загаданное число меньше!");
+    else if (input < random)
+        alert("Загаданное число больше!");
+    else if (input == random) {
+        alert("Поздравляю, Вы угадали!!!");
+        break;
     }
 }
-
-
-const getServicePercentPrices = function () {
-    return (fullPrice - (fullPrice * (rollback / 100)));
-}
-
-
-allServicePrices = getAllServicePrices()
-fullPrice = getFullPrice()
-servicePercentPrice = getServicePercentPrices()
-title = getTitle(title)
-getRollbackMessage(fullPrice);
-
-console.log("allServicePrices", allServicePrices);
-
-console.log(getServicePercentPrices())
-showTypeOf(getTitle());
-console.log('fullPrice', fullPrice);
-showTypeOf(screenPrice);
-showTypeOf(adaptive);
-console.log(screens);
-console.log(servicePercentPrice);
-console.log(getRollbackMessage(fullPrice));
