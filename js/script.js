@@ -1,17 +1,33 @@
 "use strict";
+const title = document.getElementById('title')
+console.log(title)
+    
+const btn = document.getElementsByClassName('.handler_btn')
+console.log(btn)
 
-// let title 
-// let screens 
-// let screenPrice 
-// let adaptive 
+const plus = document.querySelector('.screen-btn')
+console.log(plus)
 
-// let rollback = 10;
-// let fullPrice
-// let allServicePrices
-// let servicePercentPrice
+const percent = document.querySelectorAll('.persent')
+console.log(percent)
 
-// let service1 
-// let service2 
+const number = document.querySelectorAll('.number')
+console.log(number)
+
+const rollbackInput = document.querySelector('div.rollback input[type = range]')
+
+console.log(rollbackInput)
+
+const rollbackSpan = document.querySelector('div.rollback span')
+console.log(rollbackSpan)
+
+const totalInput = document.getElementsByClassName('total-input')
+for (let i = 0; i < totalInput.length; i++) {
+    console.log(totalInput[i])
+}
+
+let divScreen = document.querySelectorAll('screen')
+console.log(screen)
 
 
 const appData = {
@@ -59,7 +75,7 @@ const appData = {
         }
 
         return sum
-        // return servicePrice1 + servicePrice2
+        
     },
     showTypeOf: function (variable) {
         console.log(variable, typeof variable);
@@ -120,14 +136,3 @@ appData.title = appData.getTitle(appData.title)
 appData.getRollbackMessage(appData.fullPrice);
 console.log(appData.fullPrice);
 console.log(appData.servicePercentPrice);
-
-// console.log("allServicePrices", appData.allServicePrices);
-
-// console.log(getServicePercentPrices())
-// showTypeOf(getTitle());
-// console.log('fullPrice', appData.fullPrice);
-// showTypeOf(appData.screenPrice);
-// showTypeOf(appData.adaptive);
-// console.log(appData.screens);
-// console.log(appData.servicePercentPrice);
-// console.log(getRollbackMessage(appData.fullPrice));
