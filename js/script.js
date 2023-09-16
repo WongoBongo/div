@@ -22,10 +22,18 @@ const rollbackSpan = document.querySelector('div.rollback span')
 console.log(rollbackSpan)
 
 const totalInput = document.getElementsByClassName('total-input')
-console.log(totalInput)
+console.log( Array.from(totalInput))
 
-let divScreen = document.querySelectorAll('screen')
-console.log(screen)
+// const copyInput = [];
+// for (let i = 0, l = totalInput.length; i < l; i++) {
+//     console.log(totalInput[i])
+//     copyInput.push(totalInput[i])
+// }
+// console.log(copyInput)
+
+
+let divScreen = document.querySelectorAll('.screen')
+console.log(divScreen)
 
 
 // const appData = {
