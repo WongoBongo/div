@@ -2,8 +2,9 @@
 const title = document.getElementById('title')
 console.log(title)
     
-const btn = document.getElementsByClassName('main-total__buttons')
-console.log(btn)
+const btn1 = document.getElementsByClassName('handler_btn')['start', 'reset'] 
+
+console.log(btn1)
 
 const plus = document.querySelector('.screen-btn')
 console.log(plus)
@@ -21,15 +22,13 @@ console.log(rollbackInput)
 const rollbackSpan = document.querySelector('div.rollback span')
 console.log(rollbackSpan)
 
-const totalInput = document.getElementsByClassName('total-input')
-console.log( Array.from(totalInput))
+const totalInput1 = document.getElementsByClassName('total-input')[0]
+const totalInput2 = document.getElementsByClassName('total-input')[1]
+const totalInput3 = document.getElementsByClassName('total-input')[2]
+const totalInput4 = document.getElementsByClassName('total-input')[3]
+const totalInput5 = document.getElementsByClassName('total-input')[4]
 
-// const copyInput = [];
-// for (let i = 0, l = totalInput.length; i < l; i++) {
-//     console.log(totalInput[i])
-//     copyInput.push(totalInput[i])
-// }
-// console.log(copyInput)
+console.log(totalInput1,totalInput2,totalInput3,totalInput4,totalInput5)
 
 
 let divScreen = document.querySelectorAll('.screen')
