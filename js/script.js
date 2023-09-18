@@ -2,9 +2,9 @@
 const title = document.getElementById('title')
 console.log(title)
     
-const btn1 = document.getElementsByClassName('handler_btn')['start', 'reset'] 
-
-console.log(btn1)
+const btn1 = document.getElementsByClassName('handler_btn')[0] 
+const btn2= document.getElementsByClassName('handler_btn')[1]
+console.log(btn1, btn2)
 
 const plus = document.querySelector('.screen-btn')
 console.log(plus)
