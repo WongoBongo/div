@@ -62,14 +62,18 @@ const appData = {
         
         range.addEventListener('change',appData.rangesize)
 
-       
-        if (countInput.value !== ' ') {
+        
+        if (countInput.value === '' && countSelect.value === '') {
+
+            console.log('введите количество экранов и тип')
             
-            console.log(countInput.value , 'работает', typeof(countInput.value), )
         } else {
             startBtn.addEventListener('click', appData.start)
-            console.log('не работает')
+            
         }
+            
+           
+        
         
     },
    rangesize :  function(event) {
@@ -93,6 +97,7 @@ const appData = {
         console.log(appData)
         console.log(appData.screens[0].name)
         console.log(appData.servicePricesPercent, appData.servicePricesNumber)
+       
       
     },
     logger: function () {
@@ -158,7 +163,7 @@ const appData = {
     addPrices: function() {
         
         for (let screen of appData.screens) {
-            appData.screenPrice += +screen.pice
+            appData.screenPrice += +screen.price
             
         }
         for (let key in appData.servicesNumber) {
@@ -252,7 +257,7 @@ const appData = {
 
 appData.init();
 
-console.log(countInput.value,'input')
+
 
 // appData.allServicePrices = appData.getAllServicePrices()
 // appData.fullPrice = appData.getFullPrice()
