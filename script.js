@@ -1,4 +1,4 @@
-// script.js
+
 class Employee {
     constructor(name, surname, age, position, organization, hasChildren, startDate) {
         this.name = name;
