@@ -1,37 +1,105 @@
-class DomElement {
-    constructor(selector, height, width, bg, fontSize) {
-        this.selector = selector;
-        this.height = height;
-        this.width = width;
-        this.bg = bg;
-        this.fontSize = fontSize;
-    }
-    createElement(text) {
-        let element;
-        if (this.selector[0] === '.') {
-            element = document.createElement('div');
-            element.classList.add(this.selector.slice(1));
-        } else if (this.selector[0] === '#') {
-            element = document.createElement('p');
-            element.id = this.selector.slice(1);
-        }
-
-        element.style.cssText = `
-        height: ${this.height}px;
-        width: ${this.width}px;
-        background: ${this.bg};
-        font-size: ${this.fontSize}px;
-    `;
-
-        element.textContent = text;
-
-        document.body.appendChild(element);
+// script.js
+class Employee {
+    constructor(name, surname, age, position, organization, hasChildren, startDate) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.position = position;
+        this.organization = organization;
+        this.hasChildren = hasChildren;
+        this.startDate = startDate;
     }
 }
 
+class Worker extends Employee {
+    constructor(name, surname, age, position, organization, hasChildren, startDate) {
+        super(name, surname, age, position, organization, hasChildren, startDate);
+    }
+}
 
-// Создаем новый объект на основе класса DomElement
-const newElement = new DomElement('#block', 200, 400, 'lightblue', 16);
+class Engineer extends Employee {
+    constructor(name, surname, age, position, organization, qualification, hasChildren, startDate) {
+        super(name, surname, age, position, organization, hasChildren, startDate);
+        this.qualification = qualification;
+    }
+}
 
-// Вызываем метод для создания элемента на странице
-newElement.createElement('Да здравствует, ООП! Надеюсь все получится');
+document.addEventListener('DOMContentLoaded', function () {
+    const employeeForm = document.getElementById('employeeForm');
+    const employeeTableBody = document.getElementById('employeeTableBody');
+
+    function saveEmployee() {
+        const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const age = document.getElementById('age').value;
+        const position = document.getElementById('position').value;
+        const organization = document.getElementById('organization').value;
+        const entityType = document.getElementById('entityType').value;
+        const qualification = entityType === 'Engineer' ? document.getElementById('qualification').value : '-';
+        const hasChildren = document.getElementById('children').checked ? 'Да' : 'Нет';
+        const startDate = document.getElementById('startDate').value;
+
+        let newEmployee;
+        if (entityType === 'Worker') {
+            newEmployee = new Worker(name, surname, age, position, organization, hasChildren, startDate);
+        } else {
+            newEmployee = new Engineer(name, surname, age, position, organization, qualification, hasChildren, startDate);
+        }
+
+        const savedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+        savedEmployees.push(newEmployee);
+        localStorage.setItem('employees', JSON.stringify(savedEmployees));
+
+        updateTable();
+    }
+
+    function deleteEmployee(index) {
+        const savedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+        savedEmployees.splice(index, 1);
+        localStorage.setItem('employees', JSON.stringify(savedEmployees));
+
+        updateTable();
+    }
+
+    function updateTable() {
+        employeeTableBody.innerHTML = '';
+
+        const savedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
+
+        savedEmployees.forEach((employee, index) => {
+            const newRow = employeeTableBody.insertRow();
+            Object.values(employee).forEach(value => {
+                newRow.insertCell().textContent = value;
+            });
+
+            const deleteCell = newRow.insertCell();
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Удалить';
+            deleteButton.addEventListener('click', function () {
+                deleteEmployee(index);
+            });
+            deleteCell.appendChild(deleteButton);
+        });
+    }
+
+    const saveButton = document.getElementById('saveButton');
+    if (saveButton) {
+        saveButton.addEventListener('click', saveEmployee);
+    }
+
+    updateTable();
+});
+
+function entityTypeChanged() {
+    const entityType = document.getElementById('entityType').value;
+    const qualificationInput = document.getElementById('qualification');
+    const childrenInput = document.getElementById('children');
+
+    if (entityType === 'Engineer') {
+        qualificationInput.style.display = 'block';
+        childrenInput.style.display = 'block';
+    } else {
+        qualificationInput.style.display = 'none';
+        childrenInput.style.display = 'none';
+    }
+}

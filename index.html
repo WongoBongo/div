@@ -2,11 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DomElement Project</title>
+    <title>Работники</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <form id="employeeForm">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" required>
+
+        <label for="surname">Фамилия:</label>
+        <input type="text" id="surname" required>
+
+        <label for="age">Возраст:</label>
+        <input type="number" id="age" required>
+
+        <label for="position">Должность:</label>
+        <input type="text" id="position" required>
+
+        <label for="organization">Организация:</label>
+        <input type="text" id="organization" required>
+
+        <label for="qualification">Квалификация:</label>
+        <input type="text" id="qualification" required>
+
+        <label for="children">Наличие детей:</label>
+        <input type="checkbox" id="children">
+
+        <label for="startDate">Дата принятия на работу:</label>
+        <input type="date" id="startDate" required>
+
+        <button type="button" id="saveButton">Сохранить</button>
+    </form>
+    
+    <label for="entityType">Выберите тип сущности:</label>
+    <select id="entityType">
+        <option value="Worker">Работник</option>
+        <option value="Engineer">Инженер</option>
+    </select>
+
+    <table id="employeeTable">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+                <th>Должность</th>
+                <th>Организация</th>
+                <th>Квалификация</th>
+                <th>Наличие детей</th>
+                <th>Дата принятия на работу</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTableBody">
+            <!-- Таблица будет заполняться данными из JavaScript -->
+        </tbody>
+    </table>
+
     <script src="script.js"></script>
 </body>
 </html>
